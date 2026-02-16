@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Tes Online | Premium Testing Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Animated Background Shapes -->
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+    <div class="shape shape4"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Super<span>Casis</span></h1>
+                </div>
+            </div>
+            <p class="tagline">Uji Kemampuanmu, Raih Prestasimu!</p>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-number">40+</span>
+                    <span class="stat-label">Total Tes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Kategori</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Gratis</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-menu">
+            <div class="menu-row">
+                <div class="menu-card psikotes-card" onclick="showPsikotesMenu()">
+                    <div class="card-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h2>PSIKOTES</h2>
+                    <p>20 Jenis Tes Psikologi</p>
+                    <div class="card-hover-effect"></div>
+                </div>
+                <div class="menu-card akademik-card" onclick="showAkademikMenu()">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h2>AKADEMIK</h2>
+                    <p>Tes Matematika, Bahasa Inggris, Pengetahuan Umum, Wawasan Kebangsaan</p>
+                    <div class="card-hover-effect"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Psikotes -->
+        <div id="psikotesMenu" class="sub-menu" style="display: none;">
+            <div class="menu-header">
+                <button onclick="backToMain()" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </button>
+                <h2><i class="fas fa-puzzle-piece"></i> Pilih Tes Psikotes</h2>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="psikotesSearch" placeholder="Cari tes psikotes..." onkeyup="searchPsikotes()">
+            </div>
+            <div class="grid-menu" id="psikotesGrid">
+                <!-- Akan diisi dengan JavaScript -->
+            </div>
+        </div>
+
+        <!-- Menu Akademik -->
+        <div id="akademikMenu" class="sub-menu" style="display: none;">
+            <div class="menu-header">
+                <button onclick="backToMain()" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </button>
+                <h2><i class="fas fa-graduation-cap"></i> Pilih Kategori Akademik</h2>
+            </div>
+            
+            <div class="category-menu">
+                <div class="category-card matematika-card" onclick="showCategory('matematika')">
+                    <div class="category-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Matematika</h3>
+                    <p>20 Model Tes</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="category-card inggris-card" onclick="showCategory('inggris')">
+                    <div class="category-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Bahasa Inggris</h3>
+                    <p>20 Model Tes</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="category-card umum-card" onclick="showCategory('umum')">
+                    <div class="category-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Pengetahuan Umum</h3>
+                    <p>20 Model Tes</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="category-card wawasan-card" onclick="showCategory('wawasan')">
+                    <div class="category-icon">
+                        <i class="fas fa-flag-indonesia"></i>
+                    </div>
+                    <h3>Wawasan Kebangsaan</h3>
+                    <p>20 Model Tes</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Detail Kategori Akademik -->
+        <div id="categoryDetailMenu" class="sub-menu" style="display: none;">
+            <div class="menu-header">
+                <button onclick="backToAkademik()" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </button>
+                <h2 id="categoryTitle"></h2>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="categorySearch" placeholder="Cari tes..." onkeyup="searchCategory()">
+            </div>
+            <div class="grid-menu" id="categoryGrid">
+                <!-- Akan diisi dengan JavaScript -->
+            </div>
+        </div>
+
+        <!-- Frame untuk menampilkan tes -->
+        <div id="testFrame" class="test-frame" style="display: none;">
+            <div class="frame-header">
+                <button onclick="closeTest()" class="btn-back">
+                    <i class="fas fa-times"></i> Tutup Tes
+                </button>
+                <h3 id="testTitle"></h3>
+                <div class="test-timer">
+                    <i class="far fa-clock"></i>
+                    <span id="timer">00:00</span>
+                </div>
+            </div>
+            <div class="iframe-container">
+                <iframe id="testIframe" src="" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-info-circle"></i>
+        <span id="toastMessage">Selamat datang di Super Casis!</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
